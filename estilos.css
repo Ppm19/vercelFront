@@ -1,0 +1,123 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; 
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  .container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f0f2f5; 
+  }
+  
+  .titulo{
+  text-align: center;
+  color: #dc2100d5;
+  }
+  
+  .columna {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  
+  .contenedor {
+    background-color: #ffffff; 
+    border: 2px solid #c9c9c9; 
+    border-radius: 8px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    margin-bottom: 20px; 
+  }
+  
+  h3 {
+    color: #333333;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  button {
+    background-color: #dc2100d5; 
+    margin: auto;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #dc4900b9; 
+  }
+  
+  
+  input {
+    width: 100%;
+    padding: 8px 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #555555;
+  }
+  
+  
+  #listaAlumnos {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  #listaAlumnos li {
+    padding: 10px;
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  #listaAlumnos li:last-child {
+    border-bottom: none;
+  }
+  
+  
+  #addMensajeUsuario {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  
+  #resultado p {
+    margin: 5px 0;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+  
+    .columna {
+      padding: 10px;
+      align-items: center;
+    }
+  
+    .contenedor {
+      max-width: 90%;
+    }
+  }
+  

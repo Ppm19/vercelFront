@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Alumnos</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script src="jquery.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const listaAlumnos = document.querySelector('#listaAlumnos');
+            const botonMostrarAlumnos = document.querySelector('#botonMostrarAlumnos');
+            const botonBuscarAlumno = document.querySelector('#botonBuscarAlumno');
+            const idAlumnoBuscado = document.querySelector('#idAlumnoBuscado');
+            const resultado = document.querySelector('#resultado');
+            const formularioAddAlumnos = document.querySelector('#formularioAddAlumnos');
+            const addMensajeAlumno = document.querySelector('#addMensajeAlumno');
+
+            botonMostrarAlumnos.addEventListener('click', async () => {
+                try {
+                    const res = await fetch('https://vercel-back-swart.vercel.app/alumnos');
+                    const alumnos = await res.json();
+                    listaAlumnos.innerHTML = '';
+                    alumnos.forEach(alumno => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `${alumno.nombre} ${alumno.apellido}<br>${alumno.telefono}`;
+                        listaAlumnos.appendChild(li);
+                    });
+                } catch (err) {
+                    alert('Error al cargar la lista de alumnos.');
+                }
+            });
+
+            botonBuscarAlumno.addEventListener('click', async () => {
+                try {
+                    const id = idAlumnoBuscado.value;
+                    const res = await fetch(`https://vercel-back-swart.vercel.app/alumnos/${id}`);
+                    const alumno = await res.json();
+                    if (alumno.error) {
+                        resultado.textContent = alumno.error;
+                    } else {
+                        resultado.textContent = `Nombre: ${alumno.nombre} ${alumno.apellido} / Teléfono: ${alumno.telefono}`;
+                    }
+                } catch (err) {
+                    resultado.textContent = 'Error al buscar el alumno.';
+                }
+            });
+
+            formularioAddAlumnos.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                try {
+                    const formData = new FormData(formularioAddAlumnos);
+                    const alumno = Object.fromEntries(formData);
+                    const res = await fetch('https://vercel-back-swart.vercel.app/alumnos', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(alumno),
+                    });
+                    if (res.ok) {
+                        addMensajeAlumno.textContent = 'Alumno agregado correctamente.';
+                        formularioAddAlumnos.reset();
+                    } else {
+                        addMensajeAlumno.textContent = 'Error al agregar el alumno.';
+                    }
+                } catch (err) {
+                    addMensajeAlumno.textContent = 'Error al agregar el alumno.';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1 class="titulo">Alumnos</h1>
+    <div class="container">
+        <div class="columna" id="columnaIzquierda">
+            <div class="contenedor">
+                <h3>Lista de Alumnos</h3>
+                <button id="botonMostrarAlumnos">Mostrar Alumnos</button>
+                <ul id="listaAlumnos"></ul>
+            </div>
+        </div>
+        <div class="columna" id="columnaCentral">
+            <div class="contenedor">
+                <h3>Buscar Alumno</h3>
+                <input type="text" id="idAlumnoBuscado" placeholder="Ingrese el ID del alumno">
+                <button id="botonBuscarAlumno">Buscar</button>
+                <div id="resultado"></div>
+            </div>
+        </div>
+        <div class="columna" id="columnaDerecha">
+            <div class="contenedor">
+                <h3>Agregar Alumnos</h3>
+                <form id="formularioAddAlumnos">
+                    <label for="alumnoId">ID:</label>
+                    <input type="text" id="alumnoId" name="id" required>
+
+                    <label for="nombreAlumno">Nombre:</label>
+                    <input type="text" id="nombreAlumno" name="nombre" required>
+
+                    <label for="apellidoAlumno">Apellido:</label>
+                    <input type="text" id="apellidoAlumno" name="apellido" required>
+
+                    <label for="telefonoAlumno">Teléfono:</label>
+                    <input type="text" id="telefonoAlumno" name="telefono" required>
+
+                    <button type="submit">Agregar Alumno</button>
+                </form>
+                <p id="addMensajeAlumno"></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
