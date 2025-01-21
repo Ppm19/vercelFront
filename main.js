@@ -3,6 +3,7 @@ $(document).ready(function () {
       $.ajax({
           url: 'https://vercel-back-sage.vercel.app/alumnos',
           method: 'GET',
+          crossDomain : true,
           success: function (data) {
               const lista = $('#listaAlumnos');
               lista.empty();
@@ -27,6 +28,7 @@ $(document).ready(function () {
       $.ajax({
           url: `https://vercel-back-sage.vercel.app/alumnos/${id}`,
           method: 'GET',
+          crossDomain : true,
           success: function (data) {
               $('#resultado').text(`Nombre: ${data.nombre}, Apellido: ${data.apellido}, Teléfono: ${data.telefono}`);
           },
@@ -51,6 +53,7 @@ $(document).ready(function () {
           method: 'POST',
           contentType: 'application/json',
           data: JSON.stringify(nuevoAlumno),
+          crossDomain : true,
           success: function () {
               $('#addMensajeAlumno').text('Alumno agregado correctamente');
               $('#formularioAddAlumnos')[0].reset();
