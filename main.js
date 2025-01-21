@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $('#botonMostrarAlumnos').on('click', function () {
       $.ajax({
-          url: 'https://vercel-back-swart.vercel.app/alumnos',
+          url: 'https://vercel-back-sage.vercel.app/alumnos',
           method: 'GET',
           success: function (data) {
               const lista = $('#listaAlumnos');
@@ -25,7 +25,7 @@ $(document).ready(function () {
       }
 
       $.ajax({
-          url: `https://vercel-back-swart.vercel.app/alumnos/${id}`,
+          url: `https://vercel-back-sage.vercel.app/alumnos/${id}`,
           method: 'GET',
           success: function (data) {
               $('#resultado').text(`Nombre: ${data.nombre}, Apellido: ${data.apellido}, Teléfono: ${data.telefono}`);
@@ -47,7 +47,7 @@ $(document).ready(function () {
       };
 
       $.ajax({
-          url: 'https://vercel-back-swart.vercel.app/alumnos',
+          url: 'https://vercel-back-sage.vercel.app/alumnos',
           method: 'POST',
           contentType: 'application/json',
           data: JSON.stringify(nuevoAlumno),

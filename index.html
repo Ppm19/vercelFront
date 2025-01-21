@@ -18,7 +18,7 @@
 
             botonMostrarAlumnos.addEventListener('click', async () => {
                 try {
-                    const res = await fetch('https://vercel-back-swart.vercel.app/alumnos');
+                    const res = await fetch('https://vercel-back-sage.vercel.app/alumnos');
                     const alumnos = await res.json();
                     listaAlumnos.innerHTML = '';
                     alumnos.forEach(alumno => {
@@ -34,7 +34,7 @@
             botonBuscarAlumno.addEventListener('click', async () => {
                 try {
                     const id = idAlumnoBuscado.value;
-                    const res = await fetch(`https://vercel-back-swart.vercel.app/alumnos/${id}`);
+                    const res = await fetch(`https://vercel-back-sage.vercel.app/alumnos/${id}`);
                     const alumno = await res.json();
                     if (alumno.error) {
                         resultado.textContent = alumno.error;
@@ -51,7 +51,7 @@
                 try {
                     const formData = new FormData(formularioAddAlumnos);
                     const alumno = Object.fromEntries(formData);
-                    const res = await fetch('https://vercel-back-swart.vercel.app/alumnos', {
+                    const res = await fetch('https://vercel-back-sage.vercel.app/alumnos', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(alumno),
