@@ -35,8 +35,8 @@ botonBuscarAlumno.addEventListener('click', async () => {
     try {
         const id = idAlumnoBuscado.value;
         console.log(`Buscando alumno con ID: ${id}`);
-        
         const res = await fetch(`https://flask-python-delta.vercel.app/api/alumnos/${id}`);
+
         
         if (!res.ok) {
             throw new Error(`Error: ${res.status}`);
