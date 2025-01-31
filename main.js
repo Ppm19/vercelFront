@@ -1,7 +1,7 @@
 $(document).ready(function () {
   $('#botonMostrarAlumnos').on('click', function () {
       $.ajax({
-          url: 'https://vercel-back-swart.vercel.app/alumnos',
+          url: 'https://flask-python-delta.vercel.app/api/alumnos',
           method: 'GET',
           crossDomain : true,
           success: function (data) {
@@ -26,7 +26,7 @@ $(document).ready(function () {
       }
 
       $.ajax({
-          url: `https://vercel-back-swart.vercel.app/alumnos/${id}`,
+          url: `https://flask-python-delta.vercel.app/api/alumnos/<alumno_id>`,
           method: 'GET',
           crossDomain : true,
           success: function (data) {
@@ -49,7 +49,7 @@ $(document).ready(function () {
       };
 
       $.ajax({
-          url: 'https://vercel-back-swart.vercel.app/alumnos',
+          url: 'https://flask-python-delta.vercel.app/api/alumnos',
           method: 'POST',
           contentType: 'application/json',
           data: JSON.stringify(nuevoAlumno),
