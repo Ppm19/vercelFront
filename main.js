@@ -26,7 +26,7 @@ $(document).ready(function () {
       }
 
       $.ajax({
-          url: `https://flask-python-delta.vercel.app/api/alumnos/<alumno_id>`,
+          url: `https://flask-python-delta.vercel.app/api/alumnos/${id}`,
           method: 'GET',
           crossDomain : true,
           success: function (data) {
