@@ -31,20 +31,29 @@
                 }
             });
 
-            botonBuscarAlumno.addEventListener('click', async () => {
-                try {
-                    const id = idAlumnoBuscado.value;
-                    const res = await fetch(`https://flask-python-delta.vercel.app/api/alumnos/${id}`);
-                    const alumno = await res.json();
-                    if (alumno.error) {
-                        resultado.textContent = alumno.error;
-                    } else {
-                        resultado.textContent = `Nombre: ${alumno.nombre} ${alumno.apellido} / Teléfono: ${alumno.telefono}`;
-                    }
-                } catch (err) {
-                    resultado.textContent = 'Error al buscar el alumno.';
-                }
-            });
+botonBuscarAlumno.addEventListener('click', async () => {
+    try {
+        const id = idAlumnoBuscado.value;
+        console.log(`Buscando alumno con ID: ${id}`);
+        
+        const res = await fetch(`https://flask-python-delta.vercel.app/api/alumnos/${id}`);
+        
+        if (!res.ok) {
+            throw new Error(`Error: ${res.status}`);
+        }
+
+        const alumno = await res.json();
+        if (alumno.error) {
+            resultado.textContent = alumno.error;
+        } else {
+            resultado.textContent = `Nombre: ${alumno.nombre} ${alumno.apellido} / Teléfono: ${alumno.telefono}`;
+        }
+    } catch (err) {
+        console.error(err);
+        resultado.textContent = 'Error al buscar el alumno.';
+    }
+});
+
 
             formularioAddAlumnos.addEventListener('submit', async (e) => {
                 e.preventDefault();
