@@ -35,9 +35,9 @@ botonBuscarAlumno.addEventListener('click', async () => {
     try {
         const id = idAlumnoBuscado.value;
         console.log(`Buscando alumno con ID: ${id}`);
-        const res = await fetch(`https://flask-python-delta.vercel.app/api/alumnos/${id}`);
 
-        
+        const res = await fetch(`https://flask-python-delta.vercel.app/api/alumnos/${String(id)}`);
+
         if (!res.ok) {
             throw new Error(`Error: ${res.status}`);
         }
@@ -53,6 +53,7 @@ botonBuscarAlumno.addEventListener('click', async () => {
         resultado.textContent = 'Error al buscar el alumno.';
     }
 });
+
 
 
             formularioAddAlumnos.addEventListener('submit', async (e) => {
