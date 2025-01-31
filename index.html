@@ -34,7 +34,7 @@
             botonBuscarAlumno.addEventListener('click', async () => {
                 try {
                     const id = idAlumnoBuscado.value;
-                    const res = await fetch(`https://flask-python-delta.vercel.app/api/alumnos/<alumno_id>`);
+                    const res = await fetch(`https://flask-python-delta.vercel.app/api/alumnos/${id}`);
                     const alumno = await res.json();
                     if (alumno.error) {
                         resultado.textContent = alumno.error;
